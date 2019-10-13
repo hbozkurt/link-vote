@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component Matches the snapshot 1`] = `
+<span
+  className="border w-8 h-8 p-4 flex justify-center items-center cursor-pointer"
+>
+  <span />
+</span>
+`;

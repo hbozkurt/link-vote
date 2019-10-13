@@ -18,9 +18,11 @@ export const Pagination: React.FC<Props> = props => {
     perPage: props.itemsCountPerPage,
     totalResults: props.totalItemsCount,
   });
+  
+  if (!props.totalItemsCount || firstPage === lastPage) return null;
 
   return (
-    <div className="flex text-gray-800">
+    <div className="flex justify-center text-gray-800">
       <Button
         classNames="rounded-l" 
         disabled={!hasPreviousPage}

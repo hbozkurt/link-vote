@@ -7,7 +7,7 @@ interface Props {
   link: Link;
   onVoteUp(id: string): void;
   onVoteDown(id: string): void;
-  onDelete(id: string): void;
+  onDelete(id: string, name: string): void;
 }
 
 export const LinkItem: React.FC<Props> = ({ link, onVoteDown, onVoteUp, onDelete }) => {
@@ -16,7 +16,7 @@ export const LinkItem: React.FC<Props> = ({ link, onVoteDown, onVoteUp, onDelete
 
   function onConfirm() {
     setDeleteConfirmModalVisibility(false);
-    onDelete(link.id);
+    onDelete(link.id, link.name);
   }
   return (
     <div onMouseEnter={() => setDeleteBtnVisibility(true)} onMouseLeave={() => setDeleteBtnVisibility(false)}
@@ -51,7 +51,8 @@ export const LinkItem: React.FC<Props> = ({ link, onVoteDown, onVoteUp, onDelete
         <DeleteModal
           name={link.name}
           onCancel={() => setDeleteConfirmModalVisibility(false)}
-          onOK={onConfirm} />
+          onOK={onConfirm}
+        />
       }
     </div>
   );

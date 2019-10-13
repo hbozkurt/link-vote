@@ -8,10 +8,18 @@
     "@types/node": "12.7.12",
     "@types/react": "16.9.5",
     "@types/react-dom": "16.9.1",
+    "@types/react-router-dom": "^5.1.0",
+    "@types/react-test-renderer": "^16.9.0",
+    "@types/uuid": "^3.4.5",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-icons": "^3.7.0",
-    "typescript": "3.6.4"
+    "react-router-dom": "^5.1.2",
+    "react-spring": "^8.0.27",
+    "react-test-renderer": "^16.10.2",
+    "toasted-notes": "^3.0.0",
+    "typescript": "3.6.4",
+    "uuid": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",

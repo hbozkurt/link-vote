@@ -1,23 +1,52 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Pagination, SelectBox, LinkItem, AddLink } from "./components";
+import { OrderType, OrderOptions, LinkItemPerPage } from "./constants";
+import * as actions from "./actions";
+import { reducer, initialState, getOrderedLinks } from "./reducer";
 
 const App: React.FC = () => {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
+
+  function onOrderTypeChange(id: string) {
+    dispatch(actions.setOrderType(id as OrderType));
+  }
+  function onCurrentPageChange(currentPage: number) {
+    dispatch(actions.setCurrentPage(currentPage));
+  }
+  function onVoteDown(id: string) {
+    dispatch(actions.voteDown(id));
+  }
+  function onVoteUp(id: string) {
+    dispatch(actions.voteUp(id));
+  }
+  function onDelete(id: string) {
+    dispatch(actions.deleteLink(id));
+  }
+  function changeRoute() {}
+
   return (
-    <div className="text-center">
-      <header className="min-h-screen bg-blue-900 flex flex-col items-center justify-center text-white text-lg">
-        <img src={logo} className="h-64 pointer-events-none" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="text-blue-400"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="h-full flex flex-col items-center">
+      <AddLink onClick={changeRoute} />
+      <div className="h-2 border-b-2 my-4 border-gray-500" />
+      <SelectBox options={OrderOptions} onChange={onOrderTypeChange} />
+
+      <div className="my-4 pt-2">
+        {getOrderedLinks(state).map(l =>(
+          <LinkItem key={l.id}
+            link={l}
+            onVoteUp={onVoteUp}
+            onVoteDown={onVoteDown}
+            onDelete={onDelete}
+          />
+        ))}
+      </div>
+
+      <Pagination
+        currentPage={state.currentPage}
+        itemsCountPerPage={LinkItemPerPage}
+        totalItemsCount={state.links.length}
+        onChange={onCurrentPageChange}
+      />
     </div>
   );
 }
